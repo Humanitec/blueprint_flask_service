@@ -1,4 +1,4 @@
-# Template for Flask Blueprint
+# Flask Blueprint
 
 Template for creating Humanitec backend service application
 
