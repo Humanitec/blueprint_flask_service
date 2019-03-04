@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:10.4-alpine
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=db
+
+pipeline:
+
+  test:
+    image: python:3.6
+    commands:
+      - bash scripts/tcp-port-wait.sh $${DATABASE_HOST} $${DATABASE_PORT}
+      - flake8
+      - pytest -v --cov
+    environment:
+      - DATABASE_ENGINE=postgresql://root:root@postgres:5432/db
+    when:
+      event: [pull_request, push, tag]
+
+  build-docker-image-tag:
+    image: plugins/docker
+    insecure: true
+    registry: registry.tola.io
+    repo: registry.tola.io/humanitec-walhall/blueprint_flask_service
+    file: Dockerfile
+    auto_tag: true
+    secrets: [DOCKER_USERNAME, DOCKER_PASSWORD]
+    when:
+      event: [push, tag]
+      branch: [master]
+      status: [success]
