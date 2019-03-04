@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
 
-  postgres_flask_app_service:
+  postgres_blueprint_flask_service:
     container_name: postgres_app_service
     healthcheck:
       test: "pg_isready -h localhost -p 5432 -q -U postgres"
@@ -11,28 +11,28 @@ services:
       retries: 5
     image: postgres:10.4-alpine
     environment:
-      POSTGRES_DB: flask_app_service
+      POSTGRES_DB: blueprint_flask_service
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     volumes:
       - /var/lib/postgresql/data/
     restart: always
 
-  flask_app_service:
+  blueprint_flask_service:
     build:
       context: .
       dockerfile: Dockerfile
     entrypoint: bash /code/scripts/docker-entrypoint.sh
-    container_name: flask_app_service
-    image: flask_app_service
+    container_name: blueprint_flask_service
+    image: blueprint_flask_service
     volumes:
       - .:/code
     ports:
       - "8089:5000"
     depends_on:
-      - postgres_flask_app_service
+      - postgres_blueprint_flask_service
     environment:
-      DATABASE_URL: "postgresql://root:root@postgres_flask_app_service:5432/flask_app_service"
+      DATABASE_URL: "postgresql://root:root@postgres_blueprint_flask_service:5432/blueprint_flask_service"
       JWT_PUBLIC_KEY_RSA_BIFROST: |-
         -----BEGIN PUBLIC KEY-----
         MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALFc9NFZaOaSwUMPNektbtJqEjYZ6IRB

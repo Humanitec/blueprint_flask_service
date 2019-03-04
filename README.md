@@ -23,5 +23,5 @@ Swagger schema URL `http://localhost:8089/docs/`.
 To run bash:
 
 ```bash
-docker-compose run --rm --entrypoint 'bash' flask_app_service
+docker-compose run --rm --entrypoint 'bash' blueprint_flask_service
 ```
