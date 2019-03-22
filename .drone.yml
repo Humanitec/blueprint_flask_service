@@ -21,13 +21,17 @@ pipeline:
 
   build-docker-image-tag:
     image: plugins/docker
-    insecure: true
-    registry: registry.tola.io
-    repo: registry.tola.io/humanitec-walhall/blueprint_flask_service
-    file: Dockerfile
+    registry:
+      from_secret: DOCKER_REGISTRY
+    repo:
+      from_secret: DOCKER_REPO
+    username:
+      from_secret: DOCKER_USERNAME
+    password:
+      from_secret: DOCKER_PASSWORD
     auto_tag: true
-    secrets: [DOCKER_USERNAME, DOCKER_PASSWORD]
+    insecure: true
+    file: Dockerfile
     when:
-      event: [push, tag]
-      branch: [master]
+      event: [tag]
       status: [success]
