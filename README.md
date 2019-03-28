@@ -1,12 +1,16 @@
-# [Module] service (Flask)
++++
+title = "Service blueprint (Flask)"
++++
 
-## Overview
+# Service blueprint (Flask)
 
-_Please address the following points:_
+## Summary
 
--  _What does this service enable you to do with your Walhall app?_
--  _What kinds of data models does this service provide for your app?_
--  _An overview of how the data models work together._
+This is a blueprint service written in [Flask](http://flask.pocoo.org/). You should change this summary to describe your service. Some points to address:
+
+-  What feature(s) does this service provide for a Walhall app?
+-  What kinds of data models does this service provide for an app?
+-  An overview of how the data models work together.
 
 ## REST data models
 
@@ -50,7 +54,17 @@ _This is a section where you would document endpoints that are not related to a 
 
 _For each of these endpoints, a more in-depth explanation is necessary._
 
+<!-- 
+## Connection to BiFrost
+
+-  How does this blueprint use the BiFrost API?
+-  How does this blueprint use the core data models?
+
+ -->
+
 ## Local development
+
+Here are some instructions for developing this service locally:
 
 ### Prerequisites
 
@@ -95,6 +109,10 @@ To run bash:
 ```bash
 docker-compose run --rm --entrypoint 'bash' {name-of-service}
 ```
+
+## API documentation (Swagger)
+
+[Click here to go to the full API documentation.](/{path-to-the-api-docs})
 
 ## License
 
