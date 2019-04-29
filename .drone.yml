@@ -11,7 +11,7 @@ pipeline:
   test:
     image: python:3.6
     commands:
-      - bash scripts/tcp-port-wait.sh $${DATABASE_HOST} $${DATABASE_PORT}
+      - bash scripts/tcp-port-wait.sh postgres 5432
       - flake8
       - pytest -v --cov
     environment:
