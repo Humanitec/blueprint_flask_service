@@ -1,19 +1,23 @@
 services:
   postgres:
-    image: postgres:10.4-alpine
+    image: postgres:9.6
     environment:
+      - POSTGRES_DB=blueprint
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=db
 
 pipeline:
 
   test:
-    image: python:3.6
+    image: python:3.6-alpine3.7
     commands:
+      - apk add --no-cache postgresql-libs bash nginx
+      - apk add --no-cache --virtual .build-deps git python-dev gcc musl-dev postgresql-dev libffi-dev libressl-dev
+      - pip install pip --upgrade
+      - pip install -r requirements/ci.txt
       - bash scripts/tcp-port-wait.sh postgres 5432
-      - flake8
-      - pytest -v --cov
+      - pytest -v
+
     environment:
       - DATABASE_ENGINE=postgresql://root:root@postgres:5432/db
     when:
@@ -33,5 +37,5 @@ pipeline:
     insecure: true
     file: Dockerfile
     when:
-      event: [tag]
+      event: [push, tag]
       status: [success]
