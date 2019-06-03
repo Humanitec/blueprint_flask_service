@@ -84,10 +84,9 @@ Run a web server with this service:
 docker-compose up
 ```
 
-Now, open your browser and go to [http://localhost:8080](http://localhost:8080).
+Now, open your browser and go to [http://localhost:8089](http://localhost:8089).
 
-For the admin panel, go to [http://localhost:8080/admin](http://localhost:8080/admin)
-(user: `admin`, password: `admin`).
+For the Swagger API Doc, go to [http://localhost:8089/docs](http://localhost:8089/docs).
 
 ### Run tests
 

@@ -32,7 +32,12 @@ services:
     depends_on:
       - postgres_blueprint_flask_service
     environment:
-      DATABASE_URL: "postgresql://root:root@postgres_blueprint_flask_service:5432/blueprint_flask_service"
+      DATABASE_ENGINE: "postgresql"
+      DATABASE_NAME: "blueprint_flask_service"
+      DATABASE_USER: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_HOST: "postgres_blueprint_flask_service"
+      DATABASE_PORT: "5432"
       JWT_PUBLIC_KEY_RSA_BIFROST: |-
         -----BEGIN PUBLIC KEY-----
         MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALFc9NFZaOaSwUMPNektbtJqEjYZ6IRB

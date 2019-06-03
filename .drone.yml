@@ -19,7 +19,12 @@ pipeline:
       - pytest -v
 
     environment:
-      - DATABASE_ENGINE=postgresql://root:root@postgres:5432/db
+      DATABASE_ENGINE: "postgresql"
+      DATABASE_NAME: "blueprint_flask_service"
+      DATABASE_USER: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_HOST: "postgres_blueprint_flask_service"
+      DATABASE_PORT: "5432"
     when:
       event: [pull_request, push, tag]
 
