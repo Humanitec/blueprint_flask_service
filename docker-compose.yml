@@ -28,7 +28,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8089:5000"
+      - "8089:8080"
     depends_on:
       - postgres_blueprint_flask_service
     environment:
