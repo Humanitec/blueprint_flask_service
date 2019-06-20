@@ -12,6 +12,7 @@ class Config:
     DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
     SQLALCHEMY_DATABASE_URI = (f'{DATABASE_ENGINE}://{DATABASE_USER}:{DATABASE_PASSWORD}@'
                                f'{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(Config):
