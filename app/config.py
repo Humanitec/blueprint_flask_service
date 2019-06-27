@@ -14,6 +14,9 @@ class Config:
                                f'{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    JWT_PUBLIC_KEY_RSA_BIFROST = os.environ.get('JWT_PUBLIC_KEY_RSA_BIFROST')
+    JWT_DISABLED = False
+
 
 class DevelopmentConfig(Config):
     DEBUG = True
