@@ -28,6 +28,13 @@ pipeline:
     when:
       event: [pull_request, push, tag]
 
+  generate-build-tags:
+    image: bash
+    commands:
+      - bash drone-gen-versions.sh
+    when:
+      event: [push, tag]
+
   build-docker-image-tag:
     image: plugins/docker
     registry:
@@ -38,7 +45,6 @@ pipeline:
       from_secret: DOCKER_USERNAME
     password:
       from_secret: DOCKER_PASSWORD
-    auto_tag: true
     insecure: true
     file: Dockerfile
     when:
